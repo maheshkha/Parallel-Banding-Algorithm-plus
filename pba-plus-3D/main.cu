@@ -43,7 +43,7 @@ SOFTWARE.
 #include <math.h>
 #include <time.h>
 
-#include "pba\pba3D.h"
+#include "pba/pba3D.h"
 
 // Input parameters
 int fboSize     = 1024;
@@ -81,7 +81,7 @@ unsigned long CONG()
 { return (jcong = 69069 * jcong + 1234567); }
 unsigned long rand_int()         // [0,2^32-1]
 { return ((MWC() ^ CONG()) + SHR3()); }
-double random()     // [0,1)
+double random_1()     // [0,1)
 { return ((double) rand_int() / (double(ULONG_MAX)+1)); }
 
 // Generate input points
@@ -97,9 +97,9 @@ void generateRandomPoints(int texSize, int nPoints)
 	for (int i = 0; i < nPoints; i++)
 	{
         do { 
-            tx = int(random() * texSize); 
-            ty = int(random() * texSize); 
-            tz = int(random() * texSize); 
+            tx = int(random_1() * texSize); 
+            ty = int(random_1() * texSize); 
+            tz = int(random_1() * texSize); 
             id = TOID(tx, ty, tz, texSize); 
 		} while (inputVoronoi[id] != MARKER); 
 

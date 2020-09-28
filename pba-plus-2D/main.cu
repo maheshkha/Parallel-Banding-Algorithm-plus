@@ -47,7 +47,7 @@ SOFTWARE.
 #include "pba/pba2D.h"
 
 // Input parameters
-int fboSize		= 2048;
+int fboSize	= 2048;
 int nVertices   = 100;
 
 int phase1Band  = 32;   // should be equal or less than size / 64
@@ -80,7 +80,7 @@ unsigned long CONG()
 { return (jcong = 69069 * jcong + 1234567); }
 unsigned long rand_int()         // [0,2^32-1]
 { return ((MWC() ^ CONG()) + SHR3()); }
-double random()     // [0,1)
+double random_1()     // [0,1)
 { return ((double) rand_int() / (double(ULONG_MAX)+1)); }
 
 // Generate input points
@@ -96,8 +96,8 @@ void generateRandomPoints(int width, int height, int nPoints)
     for (int i = 0; i < nPoints; i++)
     {
         do {
-            tx = int(random() * width); 
-            ty = int(random() * height); 
+            tx = int(random_1() * width); 
+            ty = int(random_1() * height); 
         } while (inputVoronoi[(ty * width + tx) * 2] != MARKER); 
 
         inputVoronoi[(ty * width + tx) * 2    ] = tx; 

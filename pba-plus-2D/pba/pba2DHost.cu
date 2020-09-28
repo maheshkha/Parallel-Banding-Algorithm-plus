@@ -37,7 +37,7 @@ SOFTWARE.
 
 */
 
-#include <device_functions.h>
+#include <cuda_runtime.h>
 // #include <helper_timer.h>
 
 #include "pba2D.h"
